@@ -41,6 +41,8 @@ return [
 
     'production' => false,
 
+    'timezone' => 'Asia/Taipei',
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
