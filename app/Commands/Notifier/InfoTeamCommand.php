@@ -63,6 +63,6 @@ EOT;
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class)->weeklyOn(0, '9:00');
+        $schedule->command(static::class)->weeklyOn(5, '9:00');
     }
 }
