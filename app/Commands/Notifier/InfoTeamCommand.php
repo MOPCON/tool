@@ -3,6 +3,7 @@
 namespace App\Commands\Notifier;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 use GuzzleHttp\Client;
 
@@ -51,7 +52,8 @@ EOT;
         );
 
         if ($response->getBody() == 'ok') {
-            $this->info('slack message sent.');
+            $this->info($this->signature . ': done');
+            Log::info($this->signature . ': done');
         }
     }
 
@@ -63,6 +65,6 @@ EOT;
      */
     public function schedule(Schedule $schedule): void
     {
-        $schedule->command(static::class)->weeklyOn(5, '9:00');
+        $schedule->command(static::class)->weeklyOn(0, '9:00');
     }
 }
