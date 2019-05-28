@@ -3,6 +3,7 @@
 namespace App\Commands\Notifier;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 use GuzzleHttp\Client;
 
@@ -37,7 +38,10 @@ class LeadersCommand extends Command
             'name' => date('Y-m-d', $meetingTimestamp),
         ]);
         $newFile = $service->files->copy(env('DOC_TEMPLATE_ID'), $postBody);
-        $this->info(sprintf("file copied. Name: %s", $newFile->name));
+        $log_msg = sprintf("file copied. Name: %s", $newFile->name);
+        $this->info($log_msg);
+        Log::info($log_msg);
+
 
         $msg = sprintf(
             "<!here|here> 本週 %s（二）21:00 - 22:00 會議記錄，如有工作進度及需議決事項請至上面填寫哦~\n<https://docs.google.com/document/d/%s/edit>",
@@ -54,10 +58,10 @@ class LeadersCommand extends Command
             ['json' => $json]
         );
 
-        if($response->getBody() == 'ok'){
-            $this->info('slack message sent.');
+        if ($response->getBody() == 'ok') {
+            $this->info($this->signature . ': done');
+            Log::info($this->signature . ': done');
         }
-
     }
     /**
      * Define the command's schedule.
@@ -75,8 +79,11 @@ class LeadersCommand extends Command
         putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path() . env('SECRET_FOLDER') . env('GOOGLE_SERVICE_CREDENTIALS'));
 
         $client = new \Google_Client();
-        $client->setApplicationName(env('GOOGLE_APP_NAME'));
-        $client->setScopes(\Google_Service_Drive::DRIVE);
+        $client->setApplicationName(env('APP_NAME'));
+        $client->setScopes([
+            \Google_Service_Drive::DRIVE_READONLY,
+            \Google_Service_Drive::DRIVE_FILE,
+        ]);
         $client->useApplicationDefaultCredentials();
 
         return $client;

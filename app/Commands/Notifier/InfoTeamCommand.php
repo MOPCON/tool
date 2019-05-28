@@ -3,6 +3,7 @@
 namespace App\Commands\Notifier;
 
 use Illuminate\Console\Scheduling\Schedule;
+use Illuminate\Support\Facades\Log;
 use LaravelZero\Framework\Commands\Command;
 use GuzzleHttp\Client;
 
@@ -51,7 +52,8 @@ EOT;
         );
 
         if ($response->getBody() == 'ok') {
-            $this->info('slack message sent.');
+            $this->info($this->signature . ': done');
+            Log::info($this->signature . ': done');
         }
     }
 
