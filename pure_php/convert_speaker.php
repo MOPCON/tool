@@ -33,8 +33,13 @@ while (($row = fgets($f)) !== false) {
         $firstLine = false;
         continue;
     }
+
     $row = trim($row);
     $result = explode("\t", $row);
+
+    if (trim($result[27]) !== '關閉前台修改') {
+        continue;
+    }
 
     array_walk_recursive($result, function (&$value) {
         $value = str_replace(array('\\x22','\\x27','\\n'), array("'",'"',"\n"), $value);
