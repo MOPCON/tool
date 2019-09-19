@@ -74,7 +74,7 @@ while (($row = fgets($f)) !== false) {
         'summary_e' => $result[17],
         'is_keynote' => $result[29],
         'recordable' => $result[20] == '謝絕所有錄音錄影，但接受 MOPCON 工作人員文字紀錄。' ? false : true,
-        'level' => explode('-', $result[15])[0],
+        'level' => explode('-', $result[19])[0],
         'tags' => $result[18],
     ];
 
