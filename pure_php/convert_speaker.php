@@ -1,6 +1,6 @@
 <?php
 /**
- * $ php conver_speaker.php input_tsv output_json
+ * $ php convert_speaker.php speakers.tsv speaker.json
  */
 
 $extraField = [
@@ -37,15 +37,17 @@ while (($row = fgets($f)) !== false) {
     $row = trim($row);
     $result = explode("\t", $row);
 
-    if (trim($result[27]) !== '關閉前台修改') {
+    if (!in_array(trim($result[29]), ['關閉前台修改', '已確認'])) {
         continue;
     }
+
 
     array_walk_recursive($result, function (&$value) {
         $value = str_replace(array('\\x22','\\x27','\\n'), array("'",'"',"\n"), $value);
     });
+
     //tag filter empty
-    $result[18] = $result[18] == '' ? [] : explode(',', $result[18]);
+    $result[20] = $result[20] == '' ? [] : explode(',', $result[20]);
     //convert keynote
     $result[29] = $result[29] === '是';
     $newData = [
@@ -68,14 +70,14 @@ while (($row = fgets($f)) !== false) {
         'link_github' => $result[11],
         'link_twitter' => $result[12],
         'link_other' => $result[13],
-        'topic' => $result[14],
-        'topic_e' => $result[15],
-        'summary' => $result[16],
-        'summary_e' => $result[17],
-        'is_keynote' => $result[29],
-        'recordable' => $result[20] == '謝絕所有錄音錄影，但接受 MOPCON 工作人員文字紀錄。' ? false : true,
-        'level' => explode('-', $result[19])[0],
-        'tags' => $result[18],
+        'topic' => $result[16],
+        'topic_e' => $result[17],
+        'summary' => $result[18],
+        'summary_e' => $result[19],
+        'is_keynote' => $result[31],
+        'recordable' => $result[22] == '謝絕所有錄音錄影，但接受 MOPCON 工作人員文字紀錄。' ? false : true,
+        'level' => explode('-', $result[21])[0],
+        'tags' => $result[20],
     ];
 
     if (array_key_exists($newData['speaker_id'], $data)) {
