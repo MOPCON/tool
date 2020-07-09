@@ -35,7 +35,7 @@ class LeadersCommand extends Command
         $google_client = $this->getGoogleClient();
         $service = new \Google_Service_Drive($google_client);
         $postBody = new \Google_Service_Drive_DriveFile([
-            'name' => date('Y-m-d', $meetingTimestamp),
+            'name' => date('Ymd', $meetingTimestamp) . '組長會議',
         ]);
         $newFile = $service->files->copy(env('DOC_TEMPLATE_ID'), $postBody);
         $log_msg = sprintf("file copied. Name: %s", $newFile->name);
@@ -44,7 +44,7 @@ class LeadersCommand extends Command
 
 
         $msg = sprintf(
-            "<!here|here> 本週 %s（二）21:00 - 22:00 會議記錄，如有工作進度及需議決事項請至上面填寫哦~\n<https://docs.google.com/document/d/%s/edit>",
+            "<!here|here> 本週 %s（二）21:30 - 22:30 會議記錄，如有工作進度及需議決事項請至上面填寫哦~\n<https://docs.google.com/document/d/%s/edit>",
             date('m-d', $meetingTimestamp),
             $newFile->id
         );
