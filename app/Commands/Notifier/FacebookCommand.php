@@ -76,7 +76,7 @@ class FacebookCommand extends Command
                     ['json' => $json]
                 );
 
-                if ($response->getBody() === 'ok') {
+                if ((string) $response->getBody() === 'ok') {
                     $this->info($this->signature . ': done');
                     Log::info($this->signature . ': done');
                     file_put_contents(storage_path($log_path), json_encode(array_values($outputPost), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
