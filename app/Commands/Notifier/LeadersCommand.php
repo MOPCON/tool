@@ -30,6 +30,10 @@ class LeadersCommand extends Command
      */
     public function handle()
     {
+        if (!$this->checkTime()) {
+            exit;
+        }
+
         $meetingTimestamp = strtotime('next tuesday');
 
         $google_client = $this->getGoogleClient();
@@ -87,5 +91,16 @@ class LeadersCommand extends Command
         $client->useApplicationDefaultCredentials();
 
         return $client;
+    }
+
+    protected function checkTime()
+    {
+        $benchmark_date = env('BENCHMARK_DATE', '2020-07-19');
+        $benchmark = (int) strtotime($benchmark_date);
+        $today = (int) strtotime(date('Y-m-d'));
+
+        $period = 1209600; // 2*7*24*60*60
+        $difference = $today - $benchmark;
+        return (is_int($difference/$period));
     }
 }
