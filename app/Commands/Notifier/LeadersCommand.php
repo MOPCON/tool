@@ -31,6 +31,10 @@ class LeadersCommand extends Command
     public function handle()
     {
         if (!$this->checkTime()) {
+            Log::debug('[' . $this->signature . '] 未發送紀錄 :');
+            Log::debug('[' . $this->signature . '] 時區 => ' .  date_default_timezone_get());
+            Log::debug('[' . $this->signature . '] 現在日期 => ' . date('Y-m-d'));
+            Log::debug('[' . $this->signature . '] 基準日 => ' . env('BENCHMARK_DATE', '2020-07-19'));
             exit;
         }
 
