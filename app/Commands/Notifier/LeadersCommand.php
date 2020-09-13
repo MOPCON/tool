@@ -30,6 +30,7 @@ class LeadersCommand extends Command
      */
     public function handle()
     {
+        date_default_timezone_set("Asia/Taipei");
         if (!$this->checkTime()) {
             Log::debug('[' . $this->signature . '] 未發送紀錄 :');
             Log::debug('[' . $this->signature . '] 時區 => ' .  date_default_timezone_get());
@@ -103,7 +104,8 @@ class LeadersCommand extends Command
         $benchmark = (int) strtotime($benchmark_date);
         $today = (int) strtotime(date('Y-m-d'));
 
-        $period = 1209600; // 2*7*24*60*60
+        $frequency = (int) env('SEND_FREQUENCY', '2'); // 幾週發一次
+        $period = $frequency * 604800; // 7*24*60*60
         $difference = $today - $benchmark;
         return (is_int($difference/$period));
     }
