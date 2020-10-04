@@ -33,7 +33,7 @@ while (($row = fgets($f)) !== false) {
     $row = trim($row);
     $result = explode("\t", $row);
 
-    if (trim($result[1]) !== '已確認') {
+    if (trim($result[2]) !== '已確認') {
         continue;
     }
 
@@ -41,19 +41,19 @@ while (($row = fgets($f)) !== false) {
         $value = str_replace(array('\\x22','\\x27','\\n'), array("'",'"',"\n"), $value);
     });
     //convert sponsor_type
-    $result[2] = strtolower($result[2]);
-    $result[2] = preg_replace('/ /', '_', $result[2]);
+    $result[2] = strtolower($result[3]);
+    $result[2] = preg_replace('/ /', '_', $result[3]);
 
     $newData = [
-        "logo_path" => 'api/2019/sponsor/images/sponsor_' . $result[0],
-        "name" => $result[3],
-        "name_e" => $result[4],
+        "logo_path" => 'api/' . $result[1] . '/sponsor/images/sponsor_' . $result[0],
+        "name" => $result[4],
+        "name_e" => $result[5],
         "sponsor_id" => (int) $result[0],
-        "about_us" => $result[5],
-        "about_us_e" => $result[6],
-        "facebook_url" => $result[8],
-        "official_website" => $result[7],
-        "sponsor_type" => $result[2],
+        "about_us" => $result[6],
+        "about_us_e" => $result[7],
+        "facebook_url" => $result[9],
+        "official_website" => $result[8],
+        "sponsor_type" => $result[3],
     ];
 
     if (array_key_exists($newData['sponsor_id'], $data)) {
