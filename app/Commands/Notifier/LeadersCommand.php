@@ -31,14 +31,6 @@ class LeadersCommand extends Command
     public function handle()
     {
         date_default_timezone_set("Asia/Taipei");
-        if (!$this->checkTime()) {
-            Log::debug('[' . $this->signature . '] 未發送紀錄 :');
-            Log::debug('[' . $this->signature . '] 時區 => ' .  date_default_timezone_get());
-            Log::debug('[' . $this->signature . '] 現在日期 => ' . date('Y-m-d'));
-            Log::debug('[' . $this->signature . '] 基準日 => ' . env('BENCHMARK_DATE', '2020-07-19'));
-            exit;
-        }
-
         $meetingTimestamp = strtotime('next tuesday');
 
         $google_client = $this->getGoogleClient();
@@ -96,17 +88,5 @@ class LeadersCommand extends Command
         $client->useApplicationDefaultCredentials();
 
         return $client;
-    }
-
-    protected function checkTime()
-    {
-        $benchmark_date = env('BENCHMARK_DATE', '2020-07-19');
-        $benchmark = (int) strtotime($benchmark_date);
-        $today = (int) strtotime(date('Y-m-d'));
-
-        $frequency = (int) env('SEND_FREQUENCY', '2'); // 幾週發一次
-        $period = $frequency * 604800; // 7*24*60*60
-        $difference = $today - $benchmark;
-        return (is_int($difference/$period));
     }
 }
