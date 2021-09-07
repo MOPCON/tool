@@ -34,6 +34,8 @@ $tagTrans = [
     'open_source'            => 'Open Source',
 ];
 
+$tagCollect = [];
+
 $extraField = [
     'started_at' => 0,
     'ended_at' => 0,
@@ -87,14 +89,17 @@ while (($row = fgets($f)) !== false) {
     $tags = $result[28];
     $tagItem = [];
     foreach ($tags as $tagKey => $tag) {
-        // $tagItem[$tagKey] = $tagTrans[$tag];
-        $tagItem[] = [
+        $tagSet = [
             'color' => [
                 'web' => "#651fff",
                 'mobile' => "#ffcc00"
             ],
             'name' => $tagTrans[$tag]
         ];
+        $tagItem[] = $tagSet;
+        if (!isset($tagCollect[$tag])) {
+            $tagCollect[$tag] = $tagSet;
+        }
     }
     $newData = [
         'name' => $result[1],
@@ -107,8 +112,8 @@ while (($row = fgets($f)) !== false) {
         'bio' => $result[11],
         'bio_e' => $result[12],
         'img' => [
-            'web' => 'api/2021/speaker/images/web/speaker_' . (string) $speaker_id,
-            'mobile' => 'api/2021/speaker/images/mobile/speaker_' . (string) $speaker_id
+            'web' => 'assets/images/speakers/' . (string) $speaker_id . '.png',
+            'mobile' => 'assets/images/speakers/' . (string) $speaker_id . '.png'
         ],
         'link_fb' => $result[14],
         'link_github' => $result[15],
@@ -140,3 +145,4 @@ while (($row = fgets($f)) !== false) {
 ksort($data);
 
 file_put_contents($target, json_encode(array_values($data), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+file_put_contents(str_replace('.json', '-tags.json', $target), json_encode(array_values($tagCollect), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
