@@ -84,7 +84,7 @@ while (($row = fgets($f)) !== false) {
     // tag filter empty
     $result[28] = $result[28] == '' ? [] : explode(',', $result[28]);
     // convert keynote
-    $result[38] = $result[38] === '是';
+    $result[45] = $result[45] === '是';
     // tags transform
     $tags = $result[28];
     $tagItem = [];
@@ -125,7 +125,7 @@ while (($row = fgets($f)) !== false) {
         'summary' => $result[26],
         'summary_e' => $result[27],
         "community_partner" => "",
-        'is_keynote' => $result[38],
+        'is_keynote' => $result[45],
         "is_online" => true,
         'recordable' => true, //$result[33] == '否' ? false : true,
         'level' => explode('-', $result[29])[0],
