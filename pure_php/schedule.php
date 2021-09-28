@@ -15,89 +15,89 @@ $schedule = [
     '2021-10-23' => [
         ['str' => '09:00', 'end' => '09:15', 'event' => '開幕 Opening', 'isBroadCast' => false],
         ['str' => '09:15', 'end' => '10:00', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021001' => 114,
+            '2021001' => [114],
         ]],
         ['str' => '10:00', 'end' => '10:10', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '10:10', 'end' => '10:55', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021004' => 106,
-            '2021005' => 111,
-            '2021006' => 110,
+            '2021004' => [106],
+            '2021005' => [111],
+            '2021006' => [110],
         ]],
         ['str' => '10:55', 'end' => '11:05', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '11:05', 'end' => '11:50', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021007' => 107,
-            '2021008' => 140,
-            '2021009' => 142,
+            '2021007' => [107],
+            '2021008' => [140],
+            '2021009' => [142],
         ]],
         ['str' => '11:50', 'end' => '13:00', 'event' => '午餐 Lunch', 'isBroadCast' => false],
         ['str' => '13:00', 'end' => '13:45', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021010' => 190,
-            '2021011' => 144,
-            '2021012' => 109,
+            '2021010' => [190],
+            '2021011' => [144],
+            '2021012' => [109],
         ]],
         ['str' => '13:45', 'end' => '13:55', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '13:55', 'end' => '14:40', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021013' => 113,
-            '2021014' => 143,
-            '2021015' => 191,
+            '2021013' => [113],
+            '2021014' => [143],
+            '2021015' => [191],
         ]],
         ['str' => '14:40', 'end' => '14:50', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '14:50', 'end' => '15:35', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021016' => 187,
-            '2021017' => 139,
-            '2021018' => 112,
+            '2021016' => [187],
+            '2021017' => [139],
+            '2021018' => [112],
         ]],
         ['str' => '15:35', 'end' => '15:45', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '15:45', 'end' => '16:30', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021019' => 116,
-            '2021020' => 119,
-            '2021021' => 105,
+            '2021019' => [116],
+            '2021020' => [119],
+            '2021021' => [105],
         ]],
         ['str' => '16:30', 'end' => '16:40', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '16:40', 'end' => '17:25', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021022' => null, // 贊助議程
-            '2021023' => null, // 贊助議程
-            '2021024' => null, // 贊助議程
+            '2021022' => [], // 贊助議程
+            '2021023' => [], // 贊助議程
+            '2021024' => [], // 贊助議程
         ]],
         ['isBroadCast' => false, 'event' => 'END'],
     ],
     '2021-10-24' => [
         ['str' => '09:00', 'end' => '10:10', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021025' => null //[186, 145, 185]
+            '2021025' => [] //[186, 145, 185]
         ]],
         ['str' => '10:10', 'end' => '10:20', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '10:20', 'end' => '11:05', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021028' => 183,
-            '2021029' => 138,
-            '2021030' => 136,
+            '2021028' => [183],
+            '2021029' => [138],
+            '2021030' => [136],
         ]],
         ['str' => '11:05', 'end' => '11:15', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '11:15', 'end' => '12:00', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021031' => 188,
-            '2021032' => 181,
-            '2021033' => 117,
+            '2021031' => [188],
+            '2021032' => [181],
+            '2021033' => [117],
         ]],
         ['str' => '11:00', 'end' => '13:00', 'event' => '午餐 Lunch', 'isBroadCast' => false],
         ['str' => '13:00', 'end' => '13:45', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021034' => 108,
-            '2021035' => 182,
-            '2021036' => 189,
+            '2021034' => [108],
+            '2021035' => [182],
+            '2021036' => [189],
         ]],
         ['str' => '13:45', 'end' => '13:55', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '13:55', 'end' => '14:40', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021037' => 122,
-            '2021038' => 137,
+            '2021037' => [122],
+            '2021038' => [137],
             '2021039' => [186, 145, 185],
         ]],
         ['str' => '14:40', 'end' => '14:50', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '14:50', 'end' => '15:35', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021040' => 115,
-            '2021041' => 121,
-            '2021042' => 141,
+            '2021040' => [115],
+            '2021041' => [121],
+            '2021042' => [141],
         ]],
         ['str' => '15:35', 'end' => '15:45', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '15:45', 'end' => '16:30', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021043' => 120,
+            '2021043' => [120],
         ]],
         ['str' => '16:30', 'end' => '16:40', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '16:40', 'end' => '17:00', 'event' => '閃電秀 Lightning Talk', 'isBroadCast' => false],
@@ -108,64 +108,58 @@ $schedule = [
 
 $arrange = [];
 $mappingSpeaker = function ($session_id, $speaker_ids, array $speakersArr, $room_number) {
-    if (is_array($speaker_ids)) {
-        foreach ($speaker_ids as $speaker_id) {
-            $tmpRoom = [
-                'session_id' => $session_id,
-                'room' => $room_number,
-                'topic' => $speakersArr[$speaker_id]['topic'],
-                'topic_e' => $speakersArr[$speaker_id]['topic_e'],
-                'summary' => $speakersArr[$speaker_id]['summary'],
-                'summary_e' => $speakersArr[$speaker_id]['summary_e'],
-                'is_keynote' => $speakersArr[$speaker_id]['is_keynote'],
-                'is_online' => $speakersArr[$speaker_id]['is_online'],
-                'recordable' => $speakersArr[$speaker_id]['recordable'],
-                'level' => $speakersArr[$speaker_id]['level'],
-                'target' => $speakersArr[$speaker_id]['target'],
-                'prior_knowledge' => $speakersArr[$speaker_id]['prior_knowledge'],
-                'expected_gain' => $speakersArr[$speaker_id]['expected_gain'],
-                'tags' => $speakersArr[$speaker_id]['tags'],
-            ];
-            $speaker[] = [
-                'speaker_id' => $speaker_id,
-                'name' => $speakersArr[$speaker_id]['name'],
-                'name_e' => $speakersArr[$speaker_id]['name_e'],
-                'job_title' => $speakersArr[$speaker_id]['job_title'],
-                'job_title_e' => $speakersArr[$speaker_id]['job_title_e'],
-                'company' => $speakersArr[$speaker_id]['company'],
-                'company_e' => $speakersArr[$speaker_id]['company_e'],
-                'img' => $speakersArr[$speaker_id]['img'],
-            ];
-        }
-        $tmpRoom['speaker'] = $speaker;
-        return $tmpRoom;
-    }
-    return [
+    // default
+    $tmpRoom = [
         'session_id' => $session_id,
         'room' => $room_number,
-        'topic' => empty($speakersArr[$speaker_ids]['topic']) ? 'Coming soon...' : $speakersArr[$speaker_ids]['topic'],
-        'topic_e' => $speakersArr[$speaker_ids]['topic_e'],
-        'summary' => $speakersArr[$speaker_ids]['summary'],
-        'summary_e' => $speakersArr[$speaker_ids]['summary_e'],
-        'is_keynote' => $speakersArr[$speaker_ids]['is_keynote'],
-        'is_online' => $speakersArr[$speaker_ids]['is_online'],
-        'recordable' => $speakersArr[$speaker_ids]['recordable'],
-        'level' => $speakersArr[$speaker_ids]['level'],
-        'target' => $speakersArr[$speaker_ids]['target'],
-        'prior_knowledge' => $speakersArr[$speaker_ids]['prior_knowledge'],
-        'expected_gain' => $speakersArr[$speaker_ids]['expected_gain'],
-        'tags' => $speakersArr[$speaker_ids]['tags'],
-        'speaker' => [
-            'speaker_id' => $speaker_ids,
-            'name' => $speakersArr[$speaker_ids]['name'],
-            'name_e' => $speakersArr[$speaker_ids]['name_e'],
-            'job_title' => $speakersArr[$speaker_ids]['job_title'],
-            'job_title_e' => $speakersArr[$speaker_ids]['job_title_e'],
-            'company' => $speakersArr[$speaker_ids]['company'],
-            'company_e' => $speakersArr[$speaker_ids]['company_e'],
-            'img' => $speakersArr[$speaker_ids]['img'],
-        ]
+        'topic' => 'Coming Soon',
+        'topic_e' => '',
+        'summary' => '',
+        'summary_e' => '',
+        'is_keynote' => '',
+        'is_online' => '',
+        'recordable' => '',
+        'level' => '',
+        'target' => '',
+        'prior_knowledge' => '',
+        'expected_gain' => '',
+        'tags' => '',
     ];
+    foreach ($speaker_ids as $speaker_id) {
+        $tmpRoom = [
+            'session_id' => $session_id,
+            'room' => $room_number,
+            'topic' => $speakersArr[$speaker_id]['topic'] ?? 'Coming Soon',
+            'topic_e' => $speakersArr[$speaker_id]['topic_e'] ?? '',
+            'summary' => $speakersArr[$speaker_id]['summary'] ?? '',
+            'summary_e' => $speakersArr[$speaker_id]['summary_e'] ?? '',
+            'is_keynote' => $speakersArr[$speaker_id]['is_keynote'] ?? '',
+            'is_online' => $speakersArr[$speaker_id]['is_online'] ?? '',
+            'recordable' => $speakersArr[$speaker_id]['recordable'] ?? '',
+            'level' => $speakersArr[$speaker_id]['level'] ?? '',
+            'target' => $speakersArr[$speaker_id]['target'] ?? '',
+            'prior_knowledge' => $speakersArr[$speaker_id]['prior_knowledge'] ?? '',
+            'expected_gain' => $speakersArr[$speaker_id]['expected_gain'] ?? '',
+            'tags' => $speakersArr[$speaker_id]['tags'] ?? '',
+        ];
+        $speakers[] = [
+            'speaker_id' => $speaker_id ?? 0,
+            'name' => $speakersArr[$speaker_id]['name'] ?? '',
+            'name_e' => $speakersArr[$speaker_id]['name_e'] ?? '',
+            'job_title' => $speakersArr[$speaker_id]['job_title'] ?? '',
+            'job_title_e' => $speakersArr[$speaker_id]['job_title_e'] ?? '',
+            'company' => $speakersArr[$speaker_id]['company'] ?? '',
+            'company_e' => $speakersArr[$speaker_id]['company_e'] ?? '',
+            'img' => $speakersArr[$speaker_id]['img'] ?? ['web' => '', 'mobile' => ''],
+            'link_github' => $speakersArr[$speaker_id]['link_github'] ?? '',
+            'link_twitter' => $speakersArr[$speaker_id]['link_twitter'] ?? '',
+            'link_other' => $speakersArr[$speaker_id]['link_other'] ?? '',
+            'link_fb' => $speakersArr[$speaker_id]['link_fb'] ?? '',
+        ];
+        $tmpRoom['speakers'] = $speakers ?? [];
+    }
+    return $tmpRoom;
+
 };
 
 $speakersArr = json_decode($string, true);
