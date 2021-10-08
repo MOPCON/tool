@@ -41,7 +41,8 @@ $extraField = [
     'ended_at' => 0,
     'room' => '',
     'floor' => '',
-    'sponsor' => [],
+    'sponsor_id' => 0,
+    'sponsor_info' => [],
 ];
 
 $file = $argv[1];
@@ -145,4 +146,12 @@ while (($row = fgets($f)) !== false) {
 ksort($data);
 
 file_put_contents($target, json_encode(array_values($data), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+
+usort($tagCollect, function ($data) {
+    if (in_array($data['name'], ['Mobile App', 'AI', 'IoT'])) {
+        return -1;
+    }
+    return 1;
+});
+
 file_put_contents(str_replace('.json', '-tags.json', $target), json_encode(array_values($tagCollect), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));

@@ -19,13 +19,13 @@ $schedule = [
         ]],
         ['str' => '10:00', 'end' => '10:10', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '10:10', 'end' => '10:55', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021004' => [106],
+            '2021004' => [107],
             '2021005' => [111],
             '2021006' => [110],
         ]],
         ['str' => '10:55', 'end' => '11:05', 'event' => '休息 Break', 'isBroadCast' => false],
         ['str' => '11:05', 'end' => '11:50', 'event' => '', 'isBroadCast' => false, 'room' => [
-            '2021007' => [107],
+            '2021007' => [106],
             '2021008' => [140],
             '2021009' => [142],
         ]],
@@ -77,7 +77,7 @@ $schedule = [
             '2021032' => [181],
             '2021033' => [117],
         ]],
-        ['str' => '11:00', 'end' => '13:00', 'event' => '午餐 Lunch', 'isBroadCast' => false],
+        ['str' => '12:00', 'end' => '13:00', 'event' => '午餐 Lunch', 'isBroadCast' => false],
         ['str' => '13:00', 'end' => '13:45', 'event' => '', 'isBroadCast' => false, 'room' => [
             '2021034' => [108],
             '2021035' => [182],
@@ -107,7 +107,14 @@ $schedule = [
 ];
 
 $arrange = [];
-$mappingSpeaker = function ($session_id, $speaker_ids, array $speakersArr, $room_number) {
+$mappingSpeaker = function (
+    $session_id,
+    $speaker_ids,
+    array $speakersArr,
+    $room_number,
+    $started_at,
+    $ended_at
+) {
     // default
     $tmpRoom = [
         'session_id' => $session_id,
@@ -124,6 +131,8 @@ $mappingSpeaker = function ($session_id, $speaker_ids, array $speakersArr, $room
         'prior_knowledge' => '',
         'expected_gain' => '',
         'tags' => '',
+        "started_at" => $started_at,
+        "ended_at" => $ended_at,
     ];
     foreach ($speaker_ids as $speaker_id) {
         $tmpRoom = [
@@ -141,6 +150,10 @@ $mappingSpeaker = function ($session_id, $speaker_ids, array $speakersArr, $room
             'prior_knowledge' => $speakersArr[$speaker_id]['prior_knowledge'] ?? '',
             'expected_gain' => $speakersArr[$speaker_id]['expected_gain'] ?? '',
             'tags' => $speakersArr[$speaker_id]['tags'] ?? '',
+            'sponsor_id' => $speakersArr[$speaker_id]['sponsor_id'] ?? 0,
+            'sponsor' => $speakersArr[$speaker_id]['sponsor'] ?? [],
+            "started_at" => $started_at,
+            "ended_at" => $ended_at,
         ];
         $speakers[] = [
             'speaker_id' => $speaker_id ?? 0,
@@ -182,7 +195,16 @@ foreach ($schedule as $date => $sessions) {
             foreach ($session['room'] as $session_id => $speaker_ids) {
                 $session_count = (int) substr($session_id, -2);
                 $room_number = "R" . ($session_count % 3 == 0 ? 3 : $session_count % 3);
-                $room[] = $mappingSpeaker($session_id, $speaker_ids, $speakersArr, $room_number);
+                $started_at = isset($session['str']) ? (int) strtotime($date . ' ' . $session['str']) : 0;
+                $ended_at = isset($session['end']) ? (int) strtotime($date . ' ' . $session['end']) : 0;
+                $room[] = $mappingSpeaker(
+                    $session_id,
+                    $speaker_ids,
+                    $speakersArr,
+                    $room_number,
+                    $started_at,
+                    $ended_at
+                );
                 // 將對應資料存回講者
                 foreach ($speaker_ids as $speaker_id) {
                     $speakersArr[$speaker_id]['room'] = $room_number;
@@ -194,7 +216,7 @@ foreach ($schedule as $date => $sessions) {
         }
         $day["period"][] = [
             'started_at' => $started_at,
-            'isBroadCast' => true,
+            'isBroadCast' => $session['isBroadCast'],
             'ended_at' => $ended_at,
             'event' => $session['event'] ?? '',
             'room' => $room,
@@ -204,4 +226,4 @@ foreach ($schedule as $date => $sessions) {
 }
 
 file_put_contents('./schedule.json', json_encode(array_values($arrange), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-file_put_contents('./speakers.json', json_encode(array_values($speakersArr), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
+file_put_contents($file, json_encode(array_values($speakersArr), JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
