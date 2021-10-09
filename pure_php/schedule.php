@@ -151,7 +151,7 @@ $mappingSpeaker = function (
             'expected_gain' => $speakersArr[$speaker_id]['expected_gain'] ?? '',
             'tags' => $speakersArr[$speaker_id]['tags'] ?? '',
             'sponsor_id' => $speakersArr[$speaker_id]['sponsor_id'] ?? 0,
-            'sponsor' => $speakersArr[$speaker_id]['sponsor'] ?? [],
+            'sponsor' => $speakersArr[$speaker_id]['sponsor_info'] ?? [],
             "started_at" => $started_at,
             "ended_at" => $ended_at,
         ];

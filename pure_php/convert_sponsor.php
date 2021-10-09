@@ -54,7 +54,7 @@ $sponsor_type_sort = array_flip(array_keys($sponsor_type_name));
 // sponsor id => speaker id
 $sponsor_speaker = [
     70 => 182,
-    // 71 => 189 //not ready
+    71 => 189
 ];
 
 $extraField = [
@@ -68,10 +68,12 @@ if (!file_exists($file)) {
     die();
 }
 $data = [];
-$producionData = [] ;// file_exists($target) ? json_decode(file_get_contents($target), true) : [];
+$producionData = file_exists($target) ? json_decode(file_get_contents($target), true) : [];
 if (count($producionData) > 0) {
-    foreach ($producionData as $sponsor) {
-        $data[$sponsor['sponsor_id']] = $sponsor;
+    foreach ($producionData as $sponsorGroup) {
+        foreach ($sponsorGroup['data'] as $sponsor) {
+            $data[$sponsor['sponsor_id']] = $sponsor;
+        }
     }
 }
 
