@@ -8,23 +8,26 @@ $tagTrans = [
     'ai'                     => 'AI',
     'arvr'                   => 'AR/VR',
     'blockchain'             => 'Blockchain',
-    'cloud'                  => 'Cloud',
+    'cloud_service'          => 'Cloud Service',
     'devops'                 => 'DevOps',
     'iot'                    => 'IoT',
     'mobile_app'             => 'Mobile App',
     'startup'                => 'Startup',
-    'uiux'                   => 'UI/UX',
-    'web'                    => 'Web',
+    'ui/ux'                  => 'UI/UX',
+    'web_development'        => 'Web Development',
+    'web3'                   => 'Web3',
     'quant'                  => 'Quant',
     'security'               => 'Security',
     'cross_platform'         => 'Cross-platform',
     'data_science'           => 'Data Science',
+    'domain_driven_design'   => 'Domain-Driven Design',
     'agile'                  => 'Agile',
     'panel'                  => 'Panel',
+    'project_management'     => 'Project Management',
     'fin_tech'               => 'FinTech',
     'qa'                     => 'QA',
     'data_analyzing'         => 'Data Analyzing',
-    '5g6g'                   => '5G / 6G',
+    '5g/6g'                  => '5G / 6G',
     'business_thinking'      => 'Business Thinking',
     'social_engagement'      => '社會參與',
     'career_development'     => '職涯發展',
@@ -41,7 +44,7 @@ $extraField = [
     'ended_at' => 0,
     'room' => '',
     'floor' => '',
-    'sponsor' => [],
+    'sponsor_id' => 0,
 ];
 
 $file = $argv[1];
@@ -70,7 +73,7 @@ while (($row = fgets($f)) !== false) {
     $result = explode("\t", $row);
     $speaker_id = (int) $result[0];
 
-    if (!in_array(trim($result[43]), ['關閉前台修改', '已確認'])) {
+    if (!in_array(trim($result[46]), ['關閉前台修改', '已確認'])) {
         continue;
     }
 
@@ -84,15 +87,20 @@ while (($row = fgets($f)) !== false) {
     // tag filter empty
     $result[28] = $result[28] == '' ? [] : explode(',', $result[28]);
     // convert keynote
-    $result[45] = $result[45] === '是';
+    $result[48] = $result[48] === '是';
     // tags transform
     $tags = $result[28];
     $tagItem = [];
     foreach ($tags as $tagKey => $tag) {
+         //convert tag
+        $tag = strtolower($tag);
+        $tag = preg_replace('/ /', '_', $tag);
+        $tag = preg_replace('/-/', '_', $tag);
+
         $tagSet = [
             'color' => [
-                'web' => "#651fff",
-                'mobile' => "#ffcc00"
+                'web' => "#51A3D3",
+                'mobile' => "#51A3D3"
             ],
             'name' => $tagTrans[$tag]
         ];
@@ -111,9 +119,10 @@ while (($row = fgets($f)) !== false) {
         'job_title_e' => $result[7],
         'bio' => $result[11],
         'bio_e' => $result[12],
-        'img' => [
-            'web' => 'assets/images/speakers/' . (string) $speaker_id . '.png',
-            'mobile' => 'assets/images/speakers/' . (string) $speaker_id . '.png'
+        'img' =>
+        [
+            'web' => 'api/'. date('Y') .'/speaker/images/speaker_' . (string) $speaker_id,
+            'mobile' => 'api/'. date('Y') .'/speaker/images/speaker_' . (string) $speaker_id
         ],
         'link_fb' => $result[14],
         'link_github' => $result[15],
@@ -125,14 +134,17 @@ while (($row = fgets($f)) !== false) {
         'summary' => $result[26],
         'summary_e' => $result[27],
         "community_partner" => "",
-        'is_keynote' => $result[45],
-        "is_online" => true,
+        'is_keynote' => $result[48],
+        "is_online" => false,
         'recordable' => true, //$result[33] == '否' ? false : true,
         'level' => explode('-', $result[29])[0],
         'tags' => $tagItem,
         'target' => $result[30], // 目標會眾
-        'prior_knowledge' => $result[31], // 先備知識
-        'expected_gain' => $result[32] // 預期收穫
+        'target_e' => $result[31], // 目標會眾(英文)
+        'prior_knowledge' => $result[32], // 先備知識
+        'prior_knowledge_e' => $result[33], // 先備知識(英文)
+        'expected_gain' => $result[34], // 預期收穫
+        'expected_gain_e' => $result[35] // 預期收穫(英文)
     ];
 
     if (array_key_exists($newData['speaker_id'], $data)) {

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * $ php conver_sponsor.php input_tsv output_json
  */
@@ -38,14 +39,17 @@ while (($row = fgets($f)) !== false) {
     }
 
     array_walk_recursive($result, function (&$value) {
-        $value = str_replace(array('\\x22','\\x27','\\n'), array("'",'"',"\n"), $value);
+        $value = str_replace(array('\\x22', '\\x27', '\\n'), array("'", '"', "\n"), $value);
     });
     //convert sponsor_type
-    $result[2] = strtolower($result[3]);
-    $result[2] = preg_replace('/ /', '_', $result[3]);
+    $result[3] = strtolower($result[3]);
+    $result[3] = preg_replace('/ /', '_', $result[3]);
 
     $newData = [
-        "logo_path" => 'api/' . $result[1] . '/sponsor/images/sponsor_' . $result[0],
+        "logo_path" => [
+            'web' => 'api/' . $result[1] . '/sponsor/images/web/sponsor_' . $result[0],
+            'mobile' => 'api/' . $result[1] . '/sponsor/images/mobile/sponsor_' . $result[0]
+        ],
         "name" => $result[4],
         "name_e" => $result[5],
         "sponsor_id" => (int) $result[0],
